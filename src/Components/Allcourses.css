@@ -1,0 +1,27 @@
+.allcard {
+    margin: 20px;
+    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+    border: none;
+    border-radius: 0;
+    width: 13rem;
+    height: 18em;
+   
+   }
+   @media screen and (max-width:500px) and (min-width:300px){
+   .allcard{
+    width: 10rem;
+    height: 16rem;
+ 
+   }
+   .allcoursesrow{
+   padding-right: 30px;
+   
+   }
+   .allcoursescol1{
+    margin-left: -10px;
+   }
+   .allcoursescol3{
+    margin-left: -10px;
+   }
+  
+}

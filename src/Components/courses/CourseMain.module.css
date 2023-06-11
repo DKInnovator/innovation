@@ -1,0 +1,72 @@
+/* Whole Page */
+.main {
+  display: flex;
+  /* border: 1px solid black; */
+  /* justify-content: center; */
+  margin: 1rem 1rem 1rem 2rem;
+}
+
+/* general ul tag styling for whole course page */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Course navbar */
+.course-navbar {
+  display: flex;
+  color: #77838f;
+  margin: 1rem 6.3% 2.5rem 6.5%;
+}
+.course-navbar a {
+  text-decoration: none;
+  color: #77838f;
+  margin-right: 0.5rem;
+}
+
+.course-navbar a:hover {
+  color: #4e4f50;
+}
+.course-navbar p {
+  margin-left: 0.5rem;
+}
+
+/* sidebar */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 0.2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .course-navbar {
+    margin-left: 10.3%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1rem;
+  }
+  .course-navbar {
+    margin-left: 12.3%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .sidebar {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .course-navbar {
+    margin: 2rem 9.8%;
+  }
+}

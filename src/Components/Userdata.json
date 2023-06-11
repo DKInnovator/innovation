@@ -1,0 +1,42 @@
+
+[ {
+   "title" :"Web development ",
+   "text" :"Trending",
+   "image" :"bgimg1.jpg"
+},
+{
+    "title" :"Mobile development ",
+    "text" :"Trending",
+    "image" :"bgimg2.jpg"
+ },
+ {
+    "title" :"IOT + development ",
+    "text" :"New Course",
+    "image" :"bgimg3.jpg"
+ },
+ {
+    "title" :"Embeded Deasign ",
+    "text" :"New Course",
+    "image" :"bgimg1.jpg"
+ },
+ {
+    "title" :"MS Excel  ",
+    "text" :"Trending",
+    "image" :"bgimg1.jpg"
+ },
+ {
+    "title" :"PCB Design",
+    "text" :"New Course",
+    "image" :"bgimg2.jpg"
+ },
+ {
+    "title" :"IOT ",
+    "text" :"Trending",
+    "image" :"bgimg2.jpg"
+ },
+ {
+    "title" :"MS Powerpoint ",
+    "text" :"Trending",
+    "image" :"bgimg3.jpg"
+ }
+]

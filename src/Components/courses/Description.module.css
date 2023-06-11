@@ -1,0 +1,77 @@
+/* Description component root element class */
+.desc {
+  width: 60%;
+  margin: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  font-family: inter, sans-serif;
+  padding: 0rem 2rem 0 2rem;
+  margin-top: 0;
+}
+
+.desc h1 {
+  font-size: 2.187rem;
+  margin: 1rem 0rem 1rem 0rem;
+}
+
+/* Course Description */
+.descp {
+  color: #77838f;
+  max-width: 40rem;
+  margin: 0.2rem 0 1rem 0;
+}
+
+/* options */
+.options {
+  list-style: none;
+  display: flex;
+  color: #77838f;
+  font-size: 1.3rem;
+  flex-wrap: wrap;
+}
+.options li {
+  display: inline;
+  margin: 1rem 3rem 1rem 0;
+}
+
+.options li button {
+  color: inherit;
+  border: none;
+  background: none;
+
+  padding: 1rem;
+  padding-bottom: 0.8rem;
+}
+
+.active {
+  border-bottom: 2px solid black;
+  color: black;
+}
+
+@media only screen and (max-width: 1148px) {
+  .options li {
+    margin: 1rem;
+  }
+}
+
+@media only screen and (max-width: 996px) {
+  .options {
+    justify-content: center;
+  }
+  .options li {
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .desc {
+    width: 80%;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .desc {
+    width: 90%;
+  }
+}

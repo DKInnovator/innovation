@@ -1,0 +1,31 @@
+a {
+    text-decoration: none;
+    font-weight: 700;
+}
+.iclass {
+ color: white;
+}
+.iclass:hover{
+    transform: scale(1.5); 
+}
+.fw-bold{
+    display: flex;
+}
+
+@media screen and (max-width:1600px) and (min-width:765px){
+.toggles{
+    display: none;
+}
+#pluscollapse{
+    display:contents;
+}
+#pluscollapse2{
+    display:contents;
+}
+}
+@media screen and (max-width:765px) and (min-width:200px){
+    .fa-plus{
+        margin-left: 40px;
+    }
+    }
+   
