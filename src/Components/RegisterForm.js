@@ -1,8 +1,10 @@
-import classes from "./RegisterForm.module.css";
-import Modal from "./UI/Modal";
-import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import useInput from "../hooks/use-input";
 
+import classes from "./RegisterForm.module.css";
+import useHttp from "../hooks/use-http";
+import { useState } from "react";
+
+// Helper functions for validations
 const isFourChars = (input) => {
   return input.trim().length >= 4;
 };
@@ -16,11 +18,9 @@ const isValidPhone = (input) => {
   return input.trim().match(validRegex);
 };
 
+// Register form component
 const RegisterForm = (props) => {
-  const actionData = useActionData();
-  const navigation = useNavigation();
-
-  const isSubmitting = navigation.state === "submitting";
+  const { isLoading: isSubmitting, error, dbConnect: sendData } = useHttp();
 
   const {
     input: firstNameInput,
@@ -72,6 +72,7 @@ const RegisterForm = (props) => {
     inputBlurHandler: queryInputBlurHandler,
   } = useInput(isFourChars);
 
+  // After form submisssion
   const onFormSubmitHandler = (events) => {
     events.preventDefault();
     setFirstNameInputTouched(true);
@@ -79,29 +80,42 @@ const RegisterForm = (props) => {
     setEmailInputTouched(true);
     setPhoneInputTouched(true);
     setQueryInputTouched(true);
-    if (
-      !firstNameInput &&
-      !lastNameInput &&
-      !emailInput &&
-      !phoneInput &&
-      !queryInput
-    ) {
+    let formIsValid =
+      firstNameInputIsValid &&
+      lasttNameInputIsValid &&
+      emailInputIsValid &&
+      phoneInputIsValid &&
+      queryInputIsValid;
+
+    if (!formIsValid) {
       return;
     }
+    let formatData = {
+      firstname: firstNameInput,
+      lastname: lastNameInput,
+      email: emailInput,
+      phone: phoneInput,
+      query: queryInput,
+    };
+    sendData(
+      {
+        url: "https://innovation-8d5d8-default-rtdb.firebaseio.com//userDataRecords.json",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: formatData,
+      },
+      postSendingData
+    );
   };
 
-  let formIsValid =
-    firstNameInputIsValid &&
-    lasttNameInputIsValid &&
-    emailInputIsValid &&
-    phoneInputIsValid &&
-    queryInputIsValid;
-
-  const form = (
-    <Form
-      method="post"
+  // Actual form
+  let initilalForm = (
+    <form
+      // method="post"
       className={classes["form-contol"]}
-      // onSubmit={onFormSubmitHandler}
+      onSubmit={onFormSubmitHandler}
     >
       <div className={classes.name}>
         <div className={firstNameInputClasses}>
@@ -160,6 +174,7 @@ const RegisterForm = (props) => {
 
       <div className={classes["form-actions"]}>
         <button
+          type="button"
           onClick={props.onClose}
           className={`${classes.cancel} ${classes.btn}`}
         >
@@ -167,59 +182,60 @@ const RegisterForm = (props) => {
         </button>
         <button
           type="submit"
-          disabled={!formIsValid || isSubmitting}
+          // disabled={!formIsValid || isSubmitting}
           className={`${classes.confirm} ${classes.btn}`}
         >
-          {isSubmitting ? "Sending..." : "Send"}
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </div>
-    </Form>
+    </form>
   );
 
-  const successFormSubmission = (
-    <div className={classes.success}>
-      <h5>Submitted successfully!!!</h5>
-      <button
-        onClick={props.onClose}
-        className={`${classes.cancel} ${classes.btn}`}
-      >
-        Close
-      </button>
-    </div>
-  );
+  // Data after submittinfg form successfully.
+  const [postContent, setPostContent] = useState(null);
+
+  // function passed to use http for sending response
+  const postSendingData = (data) => {
+    console.log("dfdf", data);
+    if (data) {
+      let newContent = (
+        <div className={classes.success}>
+          <h5>Submitted successfully!!! Thank you for reaching out to us.</h5>
+          <button
+            onClick={props.onClose}
+            className={`${classes.cancel} ${classes.btn}`}
+          >
+            Close
+          </button>
+        </div>
+      );
+      setPostContent(newContent);
+    }
+  };
+
+  // Error after form submission
+  let errorContent = null;
+  if (error) {
+    errorContent = (
+      <div className={classes.error}>
+        <h5>{error}</h5>
+        <button
+          onClick={props.onClose}
+          className={`${classes.cancel} ${classes.btn}`}
+        >
+          Close
+        </button>
+      </div>
+    );
+  }
 
   return (
     <>
-      {!actionData && form}
-      {actionData && successFormSubmission}
+      {!postContent && !error && initilalForm}
+      {postContent && postContent}
+      {error && errorContent}
     </>
   );
 };
 
 export default RegisterForm;
-
-const action = async ({ request }) => {
-  const formData = await request.formData();
-
-  const formatData = {
-    firstname: formData.get("firstname"),
-    lastname: formData.get("lastname"),
-    email: formData.get("email"),
-    phone: formData.get("phoneno"),
-    query: formData.get("query"),
-  };
-
-  const response = fetch(
-    "https://innovation-8d5d8-default-rtdb.firebaseio.com//userDataRecords.json",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formatData),
-    }
-  );
-  return response;
-};
-
-export { action };

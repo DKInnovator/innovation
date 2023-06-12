@@ -1,17 +1,4 @@
-.success {
-  margin: 1.5rem;
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.success h5 {
-  margin: 1rem;
-}
-.success button {
-  align-self: flex-end;
-}
-
+/* form */
 .form-contol {
   margin: 1.5rem;
   margin-top: 2rem;
@@ -34,6 +21,7 @@ textarea ::placeholder {
   color: rgb(145, 143, 143);
 }
 
+/* fform inputs*/
 .name {
   display: flex;
 }
@@ -68,6 +56,7 @@ textarea:focus {
   margin: 0.2rem 0.3rem;
 }
 
+/* form buttons */
 .form-actions {
   display: flex;
   justify-content: end;
@@ -113,6 +102,24 @@ textarea:focus {
   border-color: #ccc;
   color: #666666;
   cursor: not-allowed;
+}
+
+/* success and error after form submission */
+.success,
+.error {
+  margin: 1.5rem;
+  /* margin-top: 2rem; */
+  display: flex;
+  flex-direction: column;
+}
+
+.success h5,
+.error h5 {
+  margin: 1rem;
+}
+.success button,
+.error button {
+  align-self: flex-end;
 }
 
 @media only screen and (max-width: 600px) {

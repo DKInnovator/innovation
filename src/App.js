@@ -18,7 +18,7 @@ function App() {
         {
           index: true,
           element: <Home />,
-          action: RegisterFormAction,
+          // action: RegisterFormAction,
         },
         {
           path: "courses",

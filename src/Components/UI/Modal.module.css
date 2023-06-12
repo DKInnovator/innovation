@@ -20,11 +20,12 @@
   /* border: 1px solid #eee; */
 }
 
+/* animation class after model is opened */
 .modal-open {
   opacity: 1;
   animation: open 0.5s ease-out forwards;
 }
-
+/* animation class after model is set to be hidden */
 .modal-close {
   opacity: 0;
   animation: close 0.5s ease-out forwards;
