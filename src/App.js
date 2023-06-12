@@ -1,11 +1,14 @@
-import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import "./App.css";
 import Home from "./Pages/Home";
 import Courses from "./Pages/Courses";
 import Career from "./Pages/Career";
 import Aboutus from "./Pages/Aboutus";
 import Contactus from "./Pages/Contactus";
 import Root from "./Pages/root";
+import { action as RegisterFormAction } from "./Components/RegisterForm";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -15,6 +18,7 @@ function App() {
         {
           index: true,
           element: <Home />,
+          action: RegisterFormAction,
         },
         {
           path: "courses",

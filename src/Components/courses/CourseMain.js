@@ -10,6 +10,7 @@ const CourseMain = (props) => {
   return (
     <>
       {/* Course Navbar */}
+
       <div className={classes["course-navbar"]}>
         <Link to="/">Home</Link>/<p>{props.courseData.courseName}</p>
       </div>
