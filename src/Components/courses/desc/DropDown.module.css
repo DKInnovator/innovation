@@ -5,7 +5,6 @@
   box-shadow: 0.1px 0.1px rgb(0, 0, 0, 0.1) 0.1px 0.1px rgb(0, 0, 0, 0.1) inset;
   display: flex;
   flex-direction: column;
-
   height: max-content;
   border-radius: 0.2rem;
   margin: 1rem auto;
@@ -29,7 +28,7 @@
   margin-bottom: auto;
 }
 
-/* fetaures or dropdown contnt */
+/* features or dropdown contnt */
 .key-features {
   color: #77838f;
   padding-left: 1rem;

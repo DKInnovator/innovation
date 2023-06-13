@@ -112,11 +112,7 @@ const RegisterForm = (props) => {
 
   // Actual form
   let initilalForm = (
-    <form
-      // method="post"
-      className={classes["form-contol"]}
-      onSubmit={onFormSubmitHandler}
-    >
+    <form className={classes["form-contol"]} onSubmit={onFormSubmitHandler}>
       <div className={classes.name}>
         <div className={firstNameInputClasses}>
           <input
@@ -182,7 +178,7 @@ const RegisterForm = (props) => {
         </button>
         <button
           type="submit"
-          // disabled={!formIsValid || isSubmitting}
+          disabled={isSubmitting}
           className={`${classes.confirm} ${classes.btn}`}
         >
           {isSubmitting ? "Submitting..." : "Submit"}
