@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import './Contactus.css';
-
 const Contactusform = () => {
  const[userData,setUserData]  = useState({
     firstname:"",
@@ -14,13 +13,22 @@ const Contactusform = () => {
  const postUserdata = (event) =>{
     name=event.target.name;
     value=event.target.value;
-    setUserData({...userData,[name]:value})
+    setUserData({...userData,[name]:value});
  }
    //connect to Firebase 
    const submitdata = async (event)=>{
     event.preventDefault();
     const {firstname,lastname,phone,email, query } =userData;
-    if(firstname && lastname && phone && email && query ){
+    if(firstname.length<=2 ||firstname.length>=30 ){
+    alert("Please Enter Valid First Name")
+       } 
+        else if( email!==/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) {
+            alert("Please Enter Valid Email Id")
+       }
+       else if( phone!=="([0-9]{9}") {
+        alert("Please Enter Valid  Mobile Number")
+   }
+    else if(firstname && lastname && phone && email && query ){
    const res = await  fetch('https://innovation-8d5d8-default-rtdb.firebaseio.com//userDataRecords.json',
    {
     method:"POST",
@@ -35,6 +43,7 @@ const Contactusform = () => {
         query, 
     })
    });
+ 
    if(res){
     setUserData({
         firstname:"",
@@ -52,7 +61,11 @@ const Contactusform = () => {
 else {
     alert("Please Fill All Field Of Data ")
    }
-   }
+   //Validation 
+  // if(firstname.length<=2){
+    //document.getElementById("Fname").innerHTML="Please Enter Valid Name";
+   //}
+}
   return (
     <>
         <section className="contact-us" >
@@ -73,13 +86,15 @@ else {
                                     <input
                                      type="text"  
                                      className="form-control"
-                                      id="Fname"
+                                  
                                       name='firstname'
                                      placeholder="Your Firstname"
                                      value={userData.firstname} 
                                     onChange={postUserdata}
+                                     required
                                      />
                                 </div>
+                              
                                 <div className="col-md-6 form-group">
                                     <input 
                                     type="text" 
@@ -100,6 +115,7 @@ else {
                                     placeholder="Write Your Phone Number" 
                                     value={userData.phone} 
                                     onChange={postUserdata}
+                                    required
                                     />
                                 </div>
                             </div>
@@ -112,7 +128,9 @@ else {
                                  value={userData.email} 
                                   onChange={postUserdata}
                                  />
+                                  
                             </div>
+                        
                             <div className="form-group">
                                 <textarea 
                                 className="form-control"

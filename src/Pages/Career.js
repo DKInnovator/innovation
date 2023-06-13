@@ -1,9 +1,10 @@
 import React from 'react'
-import Careerblock from '../Components/Careerblock';
+
+import Jointeamcareer from '../Components/Jointeamcareer';
 
 const Career = () => {
   return (
-    <Careerblock />
+    <Jointeamcareer />
   )
 }
 
